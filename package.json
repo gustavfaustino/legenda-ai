@@ -1,0 +1,15 @@
+{
+  "name": "legendai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tradutor de legendas SRT usando Gemini 2.5 Flash (Free Tier)",
+  "scripts": {
+    "deploy": "vercel deploy"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0"
+  }
+}

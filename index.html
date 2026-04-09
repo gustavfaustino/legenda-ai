@@ -1,0 +1,113 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="LegendAI - Tradutor de arquivos SRT em lotes com Gemini 2.5 Flash."
+    />
+    <title>LegendAI</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>LegendAI</h1>
+      <p>Feito para traduzir as legendas do show que minha querida Ni ama 💜</p>
+    </header>
+
+    <div class="line"></div>
+
+    <main class="main">
+      <section class="field">
+        <div class="hint" id="providerHint">Carregando Gemini 2.5 Flash (camada gratuita)...</div>
+      </section>
+
+      <section class="row" aria-label="Idiomas">
+        <div class="field">
+          <label for="srcLang">Origem</label>
+          <select id="srcLang">
+            <option value="English" selected>Inglês</option>
+            <option value="Portuguese (Brazil)">Português (Brasil)</option>
+            <option value="Portuguese (Portugal)">Português (Portugal)</option>
+            <option value="Spanish">Espanhol</option>
+            <option value="French">Francês</option>
+            <option value="Italian">Italiano</option>
+            <option value="German">Alemão</option>
+            <option value="Japanese">Japonês</option>
+            <option value="Korean">Coreano</option>
+            <option value="Mandarin Chinese">Chinês (Mandarim)</option>
+            <option value="Russian">Russo</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="dstLang">Destino</label>
+          <select id="dstLang">
+            <option value="English">Inglês</option>
+            <option value="Portuguese (Brazil)" selected>Português (Brasil)</option>
+            <option value="Portuguese (Portugal)">Português (Portugal)</option>
+            <option value="Spanish">Espanhol</option>
+            <option value="French">Francês</option>
+            <option value="Italian">Italiano</option>
+            <option value="German">Alemão</option>
+            <option value="Japanese">Japonês</option>
+            <option value="Korean">Coreano</option>
+            <option value="Mandarin Chinese">Chinês (Mandarim)</option>
+            <option value="Russian">Russo</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="field">
+        <label for="glossary">Glossário (Opcional)</label>
+        <textarea
+          id="glossary"
+          rows="4"
+          placeholder="Exemplo: showrunner = produtor executivo; cliffhanger = gancho"
+        ></textarea>
+        <div class="hint">
+          Dica: use termos importantes para manter consistência na tradução.
+        </div>
+      </section>
+
+      <section class="drop" id="dropZone" aria-label="Área de upload">
+        <input type="file" id="fileInput" accept=".srt" />
+        <div class="icon" aria-hidden="true">↑</div>
+        <div class="drop-title" id="dropTitle">
+          Solte o .srt aqui ou clique para selecionar
+        </div>
+        <div class="drop-sub" id="dropSub">
+          Suporte a arquivos grandes - processamento em lotes
+        </div>
+      </section>
+
+      <section class="stats" id="stats" aria-live="polite">
+        <div class="stat">
+          <div class="val" id="mChars">-</div>
+          <div class="lbl">Caracteres</div>
+        </div>
+        <div class="stat">
+          <div class="val" id="mBlocks">-</div>
+          <div class="lbl">Legendas</div>
+        </div>
+        <div class="stat">
+          <div class="val" id="mBatches">-</div>
+          <div class="lbl">Lotes</div>
+        </div>
+      </section>
+
+      <button id="btn" disabled>Traduzir</button>
+
+      <div class="status" id="statusBox" aria-live="polite"></div>
+      <div class="progress" id="progressBar" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <pre class="log" id="logBox"></pre>
+    </main>
+
+    <footer class="footer">Feito com amor &lt;3 (e muitas horas de sono)</footer>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

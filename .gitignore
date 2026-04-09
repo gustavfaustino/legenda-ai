@@ -1,0 +1,22 @@
+﻿# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Dependencies
+node_modules/
+
+# Vercel
+.vercel/
+
+# Env local
+.env
+.env.local
+.env.*.local
+.vercel
