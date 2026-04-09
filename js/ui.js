@@ -1,6 +1,5 @@
 export function getUI() {
   return {
-    glossary: document.getElementById("glossary"),
     providerHint: document.getElementById("providerHint"),
     srcLang: document.getElementById("srcLang"),
     dstLang: document.getElementById("dstLang"),
@@ -108,7 +107,6 @@ export function setTranslateEnabled(ui, enabled) {
 
 export function getFormValues(ui) {
   return {
-    glossary: ui.glossary.value.trim(),
     src: ui.srcLang.value,
     dst: ui.dstLang.value,
   };

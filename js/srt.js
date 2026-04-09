@@ -26,13 +26,10 @@ export function chunkBlocks(blocks, size) {
   return chunks;
 }
 
-export function buildPrompt(blocks, src, dst, glossary = "") {
+export function buildPrompt(blocks, src, dst) {
   const body = blocks
     .map((block) => `[${block.idx}]\n${block.time}\n${block.content}`)
     .join("\n\n");
-  const glossarySection = glossary
-    ? `\nGlossary (prefer these terms):\n${glossary}\n`
-    : "";
 
   return `You are a professional subtitle translator. Translate subtitles from ${src} to ${dst}.
 
@@ -42,9 +39,7 @@ Rules:
 - Translate only subtitle text lines
 - Preserve line breaks and HTML tags like <i>, <b>
 - Keep terminology consistent across the whole batch
-- If glossary terms are provided, prioritize them
 - Return ONLY the translated blocks in the same format, no extra commentary
-${glossarySection}
 
 ${body}`;
 }

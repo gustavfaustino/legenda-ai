@@ -88,7 +88,7 @@ function handleFile(file) {
 }
 
 async function startTranslation() {
-  const { glossary, src, dst } = getFormValues(ui);
+  const { src, dst } = getFormValues(ui);
 
   if (!state.providersLoaded) {
     showStatus(ui, "Aguarde a inicialização do Gemini no servidor.", "danger");
@@ -121,7 +121,7 @@ async function startTranslation() {
 
     while (!success && attempt < APP_CONFIG.maxAttempts) {
       try {
-        const prompt = buildPrompt(batch, src, dst, glossary);
+        const prompt = buildPrompt(batch, src, dst);
         const text = await callLLM({
           prompt,
         });
@@ -175,3 +175,5 @@ function downloadTranslatedFile(content, originalName) {
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+// Frase anterior: Feito para traduzir as legendas do show que minha querida Ni ama 💜
