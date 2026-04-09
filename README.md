@@ -41,6 +41,7 @@ Para os entusiastas de tecnologia, o LegendAI utiliza uma arquitetura moderna e 
 
 * **Processamento Seguro:** Suas legendas são processadas em tempo real e não ficam armazenadas em nossos servidores.
 * **Chaves Protegidas:** Toda a comunicação com a Inteligência Artificial é feita através de camadas seguras e criptografadas.
+* **Backend Endurecido:** As rotas `/api` possuem validação de origem, limite por IP, validação de JSON e respostas de erro sanitizadas.
 
 ---
 
