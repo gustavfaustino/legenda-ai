@@ -153,23 +153,53 @@ async function startTranslation() {
   }
 
   const finalText = `${translatedParts.join("\n\n")}\n`;
-  downloadTranslatedFile(finalText, state.fileName);
+  downloadTranslatedFile(finalText, state.fileName, dst);
 
   showStatus(ui, `Tradução concluída. ${blocks.length} legendas traduzidas e download iniciado.`, "success");
   appendLog(ui, "\nTudo certo. Aproveite seu arquivo traduzido.");
   setTranslateEnabled(ui, true);
 }
 
-function downloadTranslatedFile(content, originalName) {
+function downloadTranslatedFile(content, originalName, destinationLanguage) {
   const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
 
   const anchor = document.createElement("a");
   anchor.href = url;
-  anchor.download = originalName.replace(/\.srt$/i, "_pt.srt");
+  const langSuffix = getLanguageSuffix(destinationLanguage);
+  anchor.download = originalName.replace(/\.srt$/i, `_${langSuffix}.srt`);
   anchor.click();
 
   URL.revokeObjectURL(url);
+}
+
+function getLanguageSuffix(destinationLanguage) {
+  const normalized = String(destinationLanguage || "").trim();
+
+  const map = {
+    English: "en",
+    "Portuguese (Brazil)": "pt-br",
+    "Portuguese (Portugal)": "pt-pt",
+    Spanish: "es",
+    French: "fr",
+    Italian: "it",
+    German: "de",
+    Japanese: "ja",
+    Korean: "ko",
+    "Mandarin Chinese": "zh",
+    Russian: "ru",
+  };
+
+  if (map[normalized]) {
+    return map[normalized];
+  }
+
+  const slug = normalized
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  return slug || "translated";
 }
 
 function sleep(ms) {
