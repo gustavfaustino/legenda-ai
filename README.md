@@ -1,7 +1,7 @@
 ﻿# 🎬 LegendAI
 ### Tradução inteligente de legendas, feita de fã para fã.
 
-O **LegendAI** nasceu para acabar com a barreira dos idiomas. Sabe aquela legenda traduzida automaticamente que não faz sentido nenhum? Ou aquele processo manual demorado de traduzir linha por linha? Nós resolvemos isso usando o estado da arte em Inteligência Artificial.
+O **LegendAI** nasceu para acabar com a barreira dos idiomas. Sabe aquela legenda traduzida automaticamente que não faz sentido nenhum? Ou aquele processo manual demorado de traduzir linha por linha? Ou até mesmo aquele serviço pago caro só pra traduzir uma única vez? Nós resolvemos isso usando o estado da arte em Inteligência Artificial.
 
 Com o poder do **Gemini 2.5 Flash**, o LegendAI entrega traduções que entendem o contexto, mantendo a gíria, o tom e, o mais importante: a estrutura original do seu arquivo.
 
