@@ -206,4 +206,4 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Feito para traduzir as legendas do show do SK que minha querida Ni, minha futura esposa, ama 💜
+// Feito para minha querida Ni, minha futura esposa 💜
