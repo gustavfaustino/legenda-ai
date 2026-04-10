@@ -33,12 +33,18 @@ function enforceSameOrigin(req, res) {
   }
 
   const origin = normalizeOrigin(String(req.headers.origin || ""));
-  if (!origin) {
-    sendError(res, 403, "Origem nao permitida.");
-    return false;
+  if (origin === allowedOrigin) {
+    return true;
   }
 
-  if (origin === allowedOrigin) {
+  // Alguns browsers/proxies podem omitir Origin em chamadas same-origin (ex.: GET).
+  const refererOrigin = normalizeOrigin(String(req.headers.referer || req.headers.referrer || ""));
+  if (refererOrigin === allowedOrigin) {
+    return true;
+  }
+
+  // Fallback final: valida host efetivo da requisicao contra o host permitido.
+  if (matchesAllowedHost(req, allowedOrigin)) {
     return true;
   }
 
@@ -125,6 +131,25 @@ function cleanupRateStore(now) {
     if (now > entry.resetAt) {
       rateStore.delete(key);
     }
+  }
+}
+
+function matchesAllowedHost(req, allowedOrigin) {
+  const forwardedHost = String(req.headers["x-forwarded-host"] || "");
+  const requestHost = (forwardedHost || String(req.headers.host || ""))
+    .split(",")[0]
+    .trim()
+    .toLowerCase();
+
+  if (!requestHost) {
+    return false;
+  }
+
+  try {
+    const allowedHost = new URL(allowedOrigin).host.toLowerCase();
+    return requestHost === allowedHost;
+  } catch {
+    return false;
   }
 }
 
